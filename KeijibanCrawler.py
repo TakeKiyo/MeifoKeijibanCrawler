@@ -3,6 +3,7 @@ import schedule
 import time
 import json
 
+#ここは部員がIDとパスワードを入力するところ
 params = {"mode":"login","id":"","pw":""}
 
 def job():
@@ -21,16 +22,9 @@ def job():
     if temp_values != values:
         file = open("value.json","w")
         json.dump(temp_values,file,ensure_ascii=False)
-        requests.post("https://maker.ifttt.com/trigger/IFTTTのプロジェクト名/with/key/    ",data=temp_values)
-
+        requests.post("https://maker.ifttt.com/trigger/IFTTTのプロジェクト名/with/key/webhookのID",data=temp_values)#twitter用
+        requests.post("https://maker.ifttt.com/trigger/IFTTTのプロジェクト名/with/key/webhookのID",data=temp_values)#line用
 schedule.every(10).minutes.do(job)
 while True:
     schedule.run_pending()
     time.sleep(1)
-
-
-
-
-
-
-
